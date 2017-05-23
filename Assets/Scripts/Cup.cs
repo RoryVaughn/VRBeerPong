@@ -10,6 +10,9 @@ public class Cup : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("DRINK");
+        other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        
+        
     }
 	// Use this for initialization
 	void Start () {
