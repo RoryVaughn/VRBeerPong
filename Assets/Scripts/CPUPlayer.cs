@@ -7,9 +7,12 @@ using Random = UnityEngine.Random;
 
 public class CPUPlayer : MonoBehaviour
 {
-   
     public GameObject Ball;
-    public Vector3 Throw;
+    public GameObject CupSetObject;
+    private List<Transform> CupSet = new List<Transform>();
+    public float DifficultyNumber;
+    private Vector2 RandomOffSetX, RandomOffSetY, RandomOffSetZ;
+    private Vector3 Throw;
 	// Use this for initialization
 	void Start () {
 		
@@ -19,7 +22,36 @@ public class CPUPlayer : MonoBehaviour
 	void Update () {
 	    if (Input.GetKeyDown("space"))
 	    {
-            Throw = new Vector3(Random.Range(4.0f,7.0f),Random.Range(1.0f,3.0f), Random.Range(-1.0f,1.0f));
+            // Fill the CupSet
+	        foreach (Transform child in CupSetObject.GetComponentsInChildren<Transform>())
+	        {
+	            CupSet.Add(child);
+	        }
+
+            // Find an average location between all the cups.
+	        Vector3 AverageRange = new Vector3(0, 0, 0);
+	        foreach (Transform b in CupSet)
+	        {
+	            AverageRange += b.position;
+	        }
+	        AverageRange /= CupSet.Count;
+
+            // Make the random offsets.
+	        RandomOffSetX.x = AverageRange.x - DifficultyNumber + 2.7f;
+	        RandomOffSetX.y = AverageRange.x + DifficultyNumber + 3.2f;
+	        RandomOffSetY.x = AverageRange.y - DifficultyNumber;
+	        RandomOffSetY.y = AverageRange.y + DifficultyNumber + 1.8f;
+	        RandomOffSetZ.x = AverageRange.z - DifficultyNumber;
+	        RandomOffSetZ.y = AverageRange.z + DifficultyNumber;
+
+            // Make the throwing point.
+            Throw = new Vector3(
+                Random.Range(RandomOffSetX.x, RandomOffSetX.y), // 4.0f,7.0f
+                Random.Range(RandomOffSetY.x, RandomOffSetY.y), // 1.0f,3.0f
+                Random.Range(RandomOffSetZ.x, RandomOffSetZ.y) // -1.0f,1.0f
+                );
+
+            // And throw it!
 	        Ball.transform.position = new Vector3(-2,3,0);
 	        Ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
             Ball.GetComponent<Rigidbody>().AddForce(Throw, ForceMode.Impulse);
