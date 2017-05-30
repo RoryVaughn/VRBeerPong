@@ -9,25 +9,30 @@ public class CPUPlayer : MonoBehaviour
 {
     public GameObject Ball;
     public GameObject CupSetObject;
-    private List<Transform> CupSet = new List<Transform>();
+    public List<Transform> CupSet = new List<Transform>();
     public float DifficultyNumber;
     private Vector2 RandomOffSetX, RandomOffSetY, RandomOffSetZ;
     private Vector3 Throw;
 	// Use this for initialization
-	void Start () {
-		
-	}
-	
+	void Start ()
+    {
+		Events.CupHit.AddListener(RemoveCup);
+        foreach (Transform child in CupSetObject.transform)
+        {
+            CupSet.Add(child);
+        }
+    }
+
+    void RemoveCup(Cup a)
+    {
+        CupSet.Remove(a.gameObject.transform);
+    }
+
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 	    if (Input.GetKeyDown("space"))
 	    {
-            // Fill the CupSet
-	        foreach (Transform child in CupSetObject.GetComponentsInChildren<Transform>())
-	        {
-	            CupSet.Add(child);
-	        }
-
             // Find an average location between all the cups.
 	        Vector3 AverageRange = new Vector3(0, 0, 0);
 	        foreach (Transform b in CupSet)
