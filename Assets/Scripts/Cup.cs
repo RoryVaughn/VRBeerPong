@@ -13,8 +13,8 @@ public class Cup : MonoBehaviour
         Debug.Log("DRINK");
         other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         StartCoroutine(Move());
-
-          
+        Events.CupHit.Invoke(this);
+        Events.CupH.Invoke();
     }
 	// Use this for initialization
 	void Start () {
