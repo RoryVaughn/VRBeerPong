@@ -32,6 +32,46 @@ public class Restack : MonoBehaviour
                 }
                 break;
             }
+            case 5:
+                {
+                    foreach (var cup in Cups)
+                    {
+
+                    }
+                    break;
+                }
+            case 4:
+                {
+                    foreach (var cup in Cups)
+                    {
+
+                    }
+                    break;
+                }
+            case 3:
+                {
+                    foreach (var cup in Cups)
+                    {
+
+                    }
+                    break;
+                }
+            case 2:
+                {
+                    foreach (var cup in Cups)
+                    {
+
+                    }
+                    break;
+                }
+            case 1:
+                {
+                    foreach (var cup in Cups)
+                    {
+
+                    }
+                    break;
+                }
         }
     }
 }
