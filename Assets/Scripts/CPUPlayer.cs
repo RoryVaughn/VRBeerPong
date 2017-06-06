@@ -42,10 +42,10 @@ public class CPUPlayer : MonoBehaviour
 	        AverageRange /= CupSet.Count;
 
             // Make the random offsets.
-	        RandomOffSetX.x = AverageRange.x - DifficultyNumber + 2.7f;
-	        RandomOffSetX.y = AverageRange.x + DifficultyNumber + 3.2f;
+	        RandomOffSetX.x = AverageRange.x - DifficultyNumber + 1.5f;
+	        RandomOffSetX.y = AverageRange.x + DifficultyNumber + 1.5f;
 	        RandomOffSetY.x = AverageRange.y - DifficultyNumber;
-	        RandomOffSetY.y = AverageRange.y + DifficultyNumber + 1.8f;
+	        RandomOffSetY.y = AverageRange.y + DifficultyNumber + 3.5f;
 	        RandomOffSetZ.x = AverageRange.z - DifficultyNumber;
 	        RandomOffSetZ.y = AverageRange.z + DifficultyNumber;
 
